@@ -115,7 +115,7 @@ def score_entities(tokens, key_extents, response_extents, key_attrs, response_at
     scores.calculate_extent_scores()
     scores.calculate_attribute_scores()
     
-    print
+    print()
     #scores.pp_data()
     #scores.pp_counts()
     scores.pp_stats()
@@ -155,7 +155,7 @@ class Scores:
         
     def calculate_extent_scores(self):
         # collect counts...
-        for k, r, a1, a2 in self.data.values():
+        for k, r, a1, a2 in list(self.data.values()):
             if k==1 and r==1: self.tp += 1
             if k==1 and r==0: self.fn += 1
             if k==0 and r==1: self.fp += 1
@@ -168,46 +168,46 @@ class Scores:
 
     def calculate_attribute_scores(self):
         # collect counts...
-        for k, r, a1, a2 in self.data.values():
+        for k, r, a1, a2 in list(self.data.values()):
             if k==1 and r==1:
-                for a,v in a1.items():
-                    if not self.attribute_counts.has_key(a):
+                for a,v in list(a1.items()):
+                    if a not in self.attribute_counts:
                         self.attribute_counts[a] = {'correct': 0.0, 'incorrect': 0.0}
                     if a2.get(a) == v:
                         self.attribute_counts[a]['correct'] += 1
                     else:
                         self.attribute_counts[a]['incorrect'] += 1
         # and calculate
-        for attr, counts in self.attribute_counts.items():
+        for attr, counts in list(self.attribute_counts.items()):
             correct = counts['correct']
             incorrect = counts['incorrect']
             self.attribute_scores[attr] = correct / (correct + incorrect) 
         
     def pp_data(self):
-        for position in self.data.keys():
+        for position in list(self.data.keys()):
             k, r, ka, ra = self.data[position]
-            print "%-30s %s %s  %s %s" % (position, k, r, ka ,ra)
-        print
+            print("%-30s %s %s  %s %s" % (position, k, r, ka ,ra))
+        print()
         
     def pp_counts(self):
-        print "true positives:   %s" % int(self.tp)
-        print "true negatives:   %s" % int(self.tn)
-        print "false positives:  %s" % int(self.fp)
-        print "false negatives:  %s" % int(self.fn)
-        print
-        for attr, counts in self.attribute_counts.items():
-            print "attribute %s: +%s -%s" % (attr, counts['correct'], counts['incorrect'])
-        print
+        print("true positives:   %s" % int(self.tp))
+        print("true negatives:   %s" % int(self.tn))
+        print("false positives:  %s" % int(self.fp))
+        print("false negatives:  %s" % int(self.fn))
+        print()
+        for attr, counts in list(self.attribute_counts.items()):
+            print("attribute %s: +%s -%s" % (attr, counts['correct'], counts['incorrect']))
+        print()
         
     def pp_stats(self):
-        print "precision   %.2f" % self.precision
-        print "recall      %.2f" % self.recall
-        print "f1-measure  %.2f" % self.fmeasure
-        print "accuracy    %.2f" % self.accuracy        
-        print
-        for attr, score in self.attribute_scores.items():
-            print "attribute %-10s %.2f " % (attr, score)
-        print
+        print("precision   %.2f" % self.precision)
+        print("recall      %.2f" % self.recall)
+        print("f1-measure  %.2f" % self.fmeasure)
+        print("accuracy    %.2f" % self.accuracy)        
+        print()
+        for attr, score in list(self.attribute_scores.items()):
+            print("attribute %-10s %.2f " % (attr, score))
+        print()
 
 
         

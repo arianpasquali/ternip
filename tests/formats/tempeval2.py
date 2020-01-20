@@ -11,15 +11,15 @@ class TempEval2DocumentTest(unittest.TestCase):
     def test_get_sents(self):
         with open(self.filepath('base-segmentation-single.tab')) as fd:
             d = TempEval2Document(fd.read(), 'ABC1')
-        self.assertEquals('ABC1', d.docid)
-        self.assertEquals([[('The', 'DT', set()), ('first', 'JJ', set()), ('sentence', 'NN', set()), ('.', '.', set())],
+        self.assertEqual('ABC1', d.docid)
+        self.assertEqual([[('The', 'DT', set()), ('first', 'JJ', set()), ('sentence', 'NN', set()), ('.', '.', set())],
                            [('The', 'DT', set()), ('second', 'JJ', set()), ('sentence', 'NN', set()), ('.', '.', set())]],
             d.get_sents())
     
     def test_load_multi(self):
         with open(self.filepath('base-segmentation-multi.tab')) as fd:
             ds = TempEval2Document.load_multi(fd.read(), '')
-        self.assertEquals(2, len(ds))
+        self.assertEqual(2, len(ds))
         self.assertTrue('ABC1' in [d.docid for d in ds])
         self.assertTrue('ABC2' in [d.docid for d in ds])
     
@@ -30,7 +30,7 @@ class TempEval2DocumentTest(unittest.TestCase):
                  [('The', 'DT', set()), ('second', 'JJ', {t2}), ('sentence', 'NN', {t2}), ('.', '.', set())]]
         d = TempEval2Document.create(sents, 'ABC1')
         with open(self.filepath('timex-extents.tab')) as fd:
-            self.assertEquals(sorted(d.get_extents().splitlines()), sorted(fd.read().splitlines()))
+            self.assertEqual(sorted(d.get_extents().splitlines()), sorted(fd.read().splitlines()))
     
     def test_attr(self):
         t1 = Timex(id=1, type='date')
@@ -52,7 +52,7 @@ class TempEval2DocumentTest(unittest.TestCase):
                  [('The', 'DT', set()), ('second', 'JJ', {t2}), ('sentence', 'NN', {t2}), ('.', '.', {t3})]]
         d = TempEval2Document.create(sents, 'ABC1')
         with open(self.filepath('timex-attr.tab')) as fd:
-            self.assertEquals(sorted(d.get_attrs().splitlines()), sorted(fd.read().splitlines()))
+            self.assertEqual(sorted(d.get_attrs().splitlines()), sorted(fd.read().splitlines()))
 
     def filepath(self, filename):
         return os.path.join(os.path.dirname(__file__), filename)

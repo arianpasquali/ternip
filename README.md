@@ -1,5 +1,6 @@
 TERNIP: Temporal Expression Recognition and Normalisation in Python
 ===================================================================
+ 
 
 Created by Chris Northwood as part of an MSc in Computer Science with
 Speech and Language Processing at The University of Sheffield's Department
@@ -7,6 +8,8 @@ of Computer Science.
 
 [![Build Status](https://travis-ci.org/cnorthwood/ternip.svg?branch=master)](https://travis-ci.org/cnorthwood/ternip)
 [![Documentation Status](https://readthedocs.org/projects/ternip/badge/?version=latest)](http://ternip.readthedocs.org/en/latest/?badge=latest)
+
+Supporting Python 3 
 
 WHAT IS TERNIP?
 ---------------
@@ -26,8 +29,7 @@ INSTALLING
 ----------
 
 TERNIP was developed on Python 2.7 and has not been tested on earlier
-versions nor Python 3.0. Therefore, Python 2.x, where x >= 7 is recommended,
-but your mileage my vary on other systems.
+versions nor Python 3.0. I forked this repository to support Python 3.
 
 TERNIP also depends on NLTK and dateutil. Please ensure both of these Python
 packages are installed.

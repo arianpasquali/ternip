@@ -16,7 +16,7 @@ class TimexTest(unittest.TestCase):
             tids.add(t.id)
         
         # Should be exactly 3 unique IDs
-        self.assertEquals(len(tids), 3)
+        self.assertEqual(len(tids), 3)
         
         # Should be consecutive
         self.assertTrue(1 in tids)
@@ -37,8 +37,8 @@ class TimexTest(unittest.TestCase):
             tids.add(t.id)
         
         # Should be exactly 4 unique IDs and pre-assigned one hasn't changed
-        self.assertEquals(len(tids), 4)
-        self.assertEquals(6, at.id)
+        self.assertEqual(len(tids), 4)
+        self.assertEqual(6, at.id)
         
         # Should be consecutive for new ones
         self.assertTrue(1 in tids)
@@ -60,8 +60,8 @@ class TimexTest(unittest.TestCase):
             tids.add(t.id)
         
         # Should be exactly 4 unique IDs and pre-assigned one hasn't changed
-        self.assertEquals(len(tids), 4)
-        self.assertEquals(2, at.id)
+        self.assertEqual(len(tids), 4)
+        self.assertEqual(2, at.id)
         
         # Should be consecutive for new ones
         self.assertTrue(1 in tids)

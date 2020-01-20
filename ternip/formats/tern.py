@@ -2,7 +2,7 @@
 
 import xml.dom.minidom
 
-import timex2
+from . import timex2
 
 
 class TernDocument(timex2.Timex2XmlDocument):

@@ -9,7 +9,7 @@ with open(sys.argv[1]) as fd:
     
     for line in fd:
         if re.match(r'# \d+', line) == None:
-            print line,
+            print(line, end=' ')
         if line.strip() == '---':
             i += 1
-            print '# ' + str(i)
+            print('# ' + str(i))

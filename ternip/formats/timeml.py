@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 import xml.dom.minidom
-from timex3 import Timex3XmlDocument
+from .timex3 import Timex3XmlDocument
 
 
 class TimeMlDocument(Timex3XmlDocument):

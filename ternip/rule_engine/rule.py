@@ -92,13 +92,12 @@ class Rule(object):
 
         return (pos, neg)
 
-    def _check_guards(self, to_check, (pos, neg)):
+    def _check_guards(self, to_check, xxx_todo_changeme):
         """
         Given some text to check, and a tuple of positive and negative rules,
         check whether that text satisfies those guards
         """
-
-        # first check positive rules
+        (pos, neg) = xxx_todo_changeme
         for guard in pos:
             if not guard.search(to_check):
                 return False

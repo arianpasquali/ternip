@@ -12,7 +12,7 @@ class NormalisationRuleBlockTest(unittest.TestCase):
         b = NormalisationRuleBlock(None, [], 'all', rules)
         t = Timex(type='date')
         self.assertTrue(b.apply(t, '', '', [('06', 'POS', {t}), ('th', 'POS', {t}), ('January', 'POS', {t}), ('1996', 'POS', {t})], [], [])[0])
-        self.assertEquals(t.value, '19960206')
+        self.assertEqual(t.value, '19960206')
     
     def testApplyUntilSuccess1(self):
         rules = [NormalisationRule(r'<(\d+)~.+><th~.+><January~.+><(\d{4})~.+>', 'date', 'testApplyUntilSuccess1A', r'{#2} + "01" + {#1}'),
@@ -20,7 +20,7 @@ class NormalisationRuleBlockTest(unittest.TestCase):
         b = NormalisationRuleBlock(None, [], 'until-success', rules)
         t = Timex(type='date')
         self.assertTrue(b.apply(t, '', '', [('06', 'POS', {t}), ('th', 'POS', {t}), ('January', 'POS', {t}), ('1996', 'POS', {t})], [], [])[0])
-        self.assertEquals(t.value, '19960106')
+        self.assertEqual(t.value, '19960106')
     
     def testApplyUntilSuccess2(self):
         rules = [NormalisationRule(r'<(\d+)~.+><th~.+><February~.+><(\d{4})~.+>', 'date', 'testApplyUntilSuccess2A', r'{#2} + "02" + {#1}'),
@@ -28,7 +28,7 @@ class NormalisationRuleBlockTest(unittest.TestCase):
         b = NormalisationRuleBlock(None, [], 'until-success', rules)
         t = Timex(type='date')
         self.assertTrue(b.apply(t, '', '', [('06', 'POS', {t}), ('th', 'POS', {t}), ('January', 'POS', {t}), ('1996', 'POS', {t})], [], [])[0])
-        self.assertEquals(t.value, '19960106')
+        self.assertEqual(t.value, '19960106')
     
     def testRaiseError(self):
         rules = [NormalisationRule(r'<(\d+)~.+><th~.+><January~.+><(\d{4})~.+>', 'date', 'testRaiseError1', r'{#2} + "01" + {#1}'),

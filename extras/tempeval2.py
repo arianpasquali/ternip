@@ -19,17 +19,17 @@ console.setFormatter(logging.Formatter('[%(asctime)s] %(name)-12s %(levelname)-8
 logging.getLogger().addHandler(console)
 logging.getLogger('ternip').setLevel(logging.INFO)
 
-print
-print "TERNIP TempEval-2 evaluator"
-print
+print()
+print("TERNIP TempEval-2 evaluator")
+print()
 
 # Load TERNIP
 recogniser = ternip.recogniser()
-print "TERNIP loaded", recogniser.num_rules, "recognition rules"
+print("TERNIP loaded", recogniser.num_rules, "recognition rules")
 normaliser = ternip.normaliser()
-print "TERNIP loaded", normaliser.num_rules, "normalisation rules"
-print
-print "Loading data..."
+print("TERNIP loaded", normaliser.num_rules, "normalisation rules")
+print()
+print("Loading data...")
 
 # Load testing data
 data_path = os.path.normpath('../sample_data/tempeval-training-2/english/data/')
@@ -44,11 +44,11 @@ ternip_attrs = open(os.path.join(temp, 'ternip-attrs.tab'), 'w')
 
 start = time.clock()
 
-print
+print()
 
 for doc in docs:
     
-    print "Annotating", doc.docid
+    print("Annotating", doc.docid)
     
     # Annotate
     sents = recogniser.tag(doc.get_sents())
@@ -64,16 +64,16 @@ ternip_extents.close()
 ternip_attrs.close()
 
 # Score!
-print
-print "RESULTS"
-print
-print "Time to run (in CPU seconds)", time.clock() - start
+print()
+print("RESULTS")
+print()
+print("Time to run (in CPU seconds)", time.clock() - start)
 try:
     score_entities(os.path.join(data_path, 'base-segmentation.tab'), os.path.join(data_path, 'timex-extents.tab'), os.path.join(temp, 'ternip-extents.tab'), os.path.join(data_path, 'timex-attributes.tab'), os.path.join(temp, 'ternip-attrs.tab'))
 except ZeroDivisionError:
-    print
-    print "Nothing was tagged"
-    print
+    print()
+    print("Nothing was tagged")
+    print()
 
 # Clean up
 shutil.rmtree(temp)

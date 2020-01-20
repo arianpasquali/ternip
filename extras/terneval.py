@@ -54,9 +54,9 @@ def compute_f_measure(pos, act, cor):
     rec = float(cor)/float(pos)
     return (2 * prec * rec) / (prec + rec)
 
-print
-print "TERNIP TERN evaluator"
-print
+print()
+print("TERNIP TERN evaluator")
+print()
 
 unannotated = glob(os.path.normpath('../sample_data/tern/data/english/ace_2004/*/*.sgm'))
 annotated = glob(os.path.normpath('../sample_data/tern/data/english/ace_2004/*/*.sgml'))
@@ -68,10 +68,10 @@ os.mkdir(ternip_dir)
 
 # Load TERNIP
 recogniser = ternip.recogniser()
-print "TERNIP loaded", recogniser.num_rules, "recognition rules"
+print("TERNIP loaded", recogniser.num_rules, "recognition rules")
 normaliser = ternip.normaliser()
-print "TERNIP loaded", normaliser.num_rules, "normalisation rules"
-print
+print("TERNIP loaded", normaliser.num_rules, "normalisation rules")
+print()
 
 ternip_recognition_scores = []
 ternip_extent_scores = []
@@ -98,7 +98,7 @@ for i in range(len(unannotated)):
             doc = TernDocument(fd.read())
     except:
         doc = None
-        print "Unable to load document", id
+        print("Unable to load document", id)
         continue
     
     # Get DCT
@@ -123,14 +123,14 @@ for i in range(len(unannotated)):
     
     # Score TERNIP
     output = subprocess.Popen(['perl', 'score_timex2.pl', annotated[i], ternip_file], stdout=subprocess.PIPE).communicate()[0]
-    print id
+    print(id)
     ternip_recognition_score = get_f_measure(output, None)
     ternip_extent_score = get_f_measure(output, 'TEXT')
     ternip_norm_score = get_f_measure(output, 'VAL')
-    print "    recognition", ternip_recognition_score
-    print "    extent", ternip_extent_score
-    print "    normalisation", ternip_norm_score
-    print
+    print("    recognition", ternip_recognition_score)
+    print("    extent", ternip_extent_score)
+    print("    normalisation", ternip_norm_score)
+    print()
     ternip_recognition_scores.append(ternip_recognition_score)
     ternip_extent_scores.append(ternip_extent_score)
     ternip_norm_scores.append(ternip_norm_score)
@@ -147,21 +147,21 @@ for i in range(len(unannotated)):
     ternip_norm_acts += act
     ternip_norm_cors += cor
 
-print
-print "MACROAVERAGED F-MEASURES"
-print "    successfully tagged", len(ternip_recognition_scores), "documents"
-print "    recognition", sum(ternip_recognition_scores)/len(ternip_recognition_scores)
-print "    extent", sum(ternip_extent_scores)/len(ternip_extent_scores)
-print "    normalisation", sum(ternip_norm_scores)/len(ternip_norm_scores)
-print "    run time (CPU seconds)", time.clock() - start
-print
+print()
+print("MACROAVERAGED F-MEASURES")
+print("    successfully tagged", len(ternip_recognition_scores), "documents")
+print("    recognition", sum(ternip_recognition_scores)/len(ternip_recognition_scores))
+print("    extent", sum(ternip_extent_scores)/len(ternip_extent_scores))
+print("    normalisation", sum(ternip_norm_scores)/len(ternip_norm_scores))
+print("    run time (CPU seconds)", time.clock() - start)
+print()
 
 
-print
-print "MICROAVERAGED F-MEASURES"
-print "    successfully tagged", len(ternip_recognition_scores), "documents"
-print "    recognition", compute_f_measure(ternip_recognition_poss, ternip_recognition_acts, ternip_recognition_cors)
-print "    extent", compute_f_measure(ternip_extent_poss, ternip_extent_acts, ternip_extent_cors)
-print "    normalisation", compute_f_measure(ternip_norm_poss, ternip_norm_acts, ternip_norm_cors)
-print
+print()
+print("MICROAVERAGED F-MEASURES")
+print("    successfully tagged", len(ternip_recognition_scores), "documents")
+print("    recognition", compute_f_measure(ternip_recognition_poss, ternip_recognition_acts, ternip_recognition_cors))
+print("    extent", compute_f_measure(ternip_extent_poss, ternip_extent_acts, ternip_extent_cors))
+print("    normalisation", compute_f_measure(ternip_norm_poss, ternip_norm_acts, ternip_norm_cors))
+print()
 shutil.rmtree(temp)

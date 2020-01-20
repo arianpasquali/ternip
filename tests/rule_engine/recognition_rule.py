@@ -10,7 +10,7 @@ class RecognitionRuleTest(unittest.TestCase):
                            ('leaves', 'POS', set()),
                            ('on', 'POS', set()),
                            ('Friday', 'POS', set())])
-        self.assertEquals([len(s[2]) for s in sent], [0,0,0,0,1], 'actual result was '+str(sent))
+        self.assertEqual([len(s[2]) for s in sent], [0,0,0,0,1], 'actual result was '+str(sent))
         self.assertTrue(success)
     
     def testMatchCaseSensitive1(self):
@@ -20,7 +20,7 @@ class RecognitionRuleTest(unittest.TestCase):
                            ('leaves', 'POS', set()),
                            ('on', 'POS', set()),
                            ('Wednesday', 'POS', set())])
-        self.assertEquals([len(s[2]) for s in sent], [0,0,0,0,0], 'actual result was '+str(sent))
+        self.assertEqual([len(s[2]) for s in sent], [0,0,0,0,0], 'actual result was '+str(sent))
         self.assertFalse(success)
     
     def testMatchCaseSensitive2(self):
@@ -30,7 +30,7 @@ class RecognitionRuleTest(unittest.TestCase):
                            ('leaves', 'POS', set()),
                            ('on', 'POS', set()),
                            ('wednesday', 'POS', set())])
-        self.assertEquals([len(s[2]) for s in sent], [0,0,0,0,1], 'actual result was '+str(sent))
+        self.assertEqual([len(s[2]) for s in sent], [0,0,0,0,1], 'actual result was '+str(sent))
         self.assertTrue(success)
     
     def testMatchAppends(self):
@@ -40,7 +40,7 @@ class RecognitionRuleTest(unittest.TestCase):
                            ('leaves', 'POS', set()),
                            ('on', 'POS', set()),
                            ('Friday', 'POS', {None})])
-        self.assertEquals([len(s[2]) for s in sent], [0,0,0,0,2], 'actual result was '+str(sent))
+        self.assertEqual([len(s[2]) for s in sent], [0,0,0,0,2], 'actual result was '+str(sent))
         self.assertTrue(success)
     
     def testPosGuard1(self):
@@ -51,7 +51,7 @@ class RecognitionRuleTest(unittest.TestCase):
                            ('leaves', 'POS', set()),
                            ('on', 'POS', set()),
                            ('Friday', 'POS', set())])
-        self.assertEquals([len(s[2]) for s in sent], [0,0,0,0,1], 'actual result was '+str(sent))
+        self.assertEqual([len(s[2]) for s in sent], [0,0,0,0,1], 'actual result was '+str(sent))
         self.assertTrue(success)
     
     def testPosGuard2(self):
@@ -62,7 +62,7 @@ class RecognitionRuleTest(unittest.TestCase):
                            ('leaves', 'POS', set()),
                            ('on', 'POS', set()),
                            ('Friday', 'POS', set())])
-        self.assertEquals([len(s[2]) for s in sent], [0,0,0,0,0], 'actual result was '+str(sent))
+        self.assertEqual([len(s[2]) for s in sent], [0,0,0,0,0], 'actual result was '+str(sent))
         self.assertFalse(success)
     
     def testNegGuard1(self):
@@ -73,7 +73,7 @@ class RecognitionRuleTest(unittest.TestCase):
                            ('leaves', 'POS', set()),
                            ('on', 'POS', set()),
                            ('Friday', 'POS', set())])
-        self.assertEquals([len(s[2]) for s in sent], [0,0,0,0,0], 'actual result was '+str(sent))
+        self.assertEqual([len(s[2]) for s in sent], [0,0,0,0,0], 'actual result was '+str(sent))
         self.assertFalse(success)
     
     def testNegGuard2(self):
@@ -84,7 +84,7 @@ class RecognitionRuleTest(unittest.TestCase):
                            ('leaves', 'POS', set()),
                            ('on', 'POS', set()),
                            ('Friday', 'POS', set())])
-        self.assertEquals([len(s[2]) for s in sent], [0,0,0,0,1], 'actual result was '+str(sent))
+        self.assertEqual([len(s[2]) for s in sent], [0,0,0,0,1], 'actual result was '+str(sent))
         self.assertTrue(success)
     
     def testMatchMulti(self):
@@ -95,8 +95,8 @@ class RecognitionRuleTest(unittest.TestCase):
                            ('on', 'POS', set()),
                            ('Friday', 'POS', set()),
                            ('afternoon', 'POS', set())])
-        self.assertEquals([len(s[2]) for s in sent], [0,0,0,0,1,1], 'actual result was '+str(sent))
-        self.assertEquals(sent[4][2], sent[5][2])
+        self.assertEqual([len(s[2]) for s in sent], [0,0,0,0,1,1], 'actual result was '+str(sent))
+        self.assertEqual(sent[4][2], sent[5][2])
         self.assertTrue(success)
     
     def testMatchMultiMiddle(self):
@@ -109,8 +109,8 @@ class RecognitionRuleTest(unittest.TestCase):
                            ('afternoon', 'POS', set()),
                            ('for', 'POS', set()),
                            ('Atlanta', 'POS', set())])
-        self.assertEquals([len(s[2]) for s in sent], [0,0,0,0,1,1,0,0], 'actual result was '+str(sent))
-        self.assertEquals(sent[4][2], sent[5][2])
+        self.assertEqual([len(s[2]) for s in sent], [0,0,0,0,1,1,0,0], 'actual result was '+str(sent))
+        self.assertEqual(sent[4][2], sent[5][2])
         self.assertTrue(success)
     
     def testNoMatch(self):
@@ -120,7 +120,7 @@ class RecognitionRuleTest(unittest.TestCase):
                            ('leaves', 'POS', set()),
                            ('on', 'POS', set()),
                            ('Friday', 'POS', set())])
-        self.assertEquals([len(s[2]) for s in sent], [0,0,0,0,0], 'actual result was '+str(sent))
+        self.assertEqual([len(s[2]) for s in sent], [0,0,0,0,0], 'actual result was '+str(sent))
         self.assertFalse(success)
     
     def testMatchSquelch(self):
@@ -130,7 +130,7 @@ class RecognitionRuleTest(unittest.TestCase):
                            ('leaves', 'POS', set()),
                            ('on', 'POS', set()),
                            ('Friday', 'POS', {None})])
-        self.assertEquals([len(s[2]) for s in sent], [0,0,0,0,0], 'actual result was '+str(sent))
+        self.assertEqual([len(s[2]) for s in sent], [0,0,0,0,0], 'actual result was '+str(sent))
         self.assertTrue(success)
     
     def testMatchInsensitive(self):
@@ -140,7 +140,7 @@ class RecognitionRuleTest(unittest.TestCase):
                            ('leaves', 'POS', set()),
                            ('on', 'POS', set()),
                            ('Friday', 'POS', set())])
-        self.assertEquals([len(s[2]) for s in sent], [0,0,0,0,1], 'actual result was '+str(sent))
+        self.assertEqual([len(s[2]) for s in sent], [0,0,0,0,1], 'actual result was '+str(sent))
         self.assertTrue(success)
     
     def testPosBefore1(self):
@@ -151,7 +151,7 @@ class RecognitionRuleTest(unittest.TestCase):
                            ('left', 'POS', set()),
                            ('last', 'POS', set()),
                            ('Friday', 'POS', set())])
-        self.assertEquals([len(s[2]) for s in sent], [0,0,0,0,1], 'actual result was '+str(sent))
+        self.assertEqual([len(s[2]) for s in sent], [0,0,0,0,1], 'actual result was '+str(sent))
         self.assertTrue(success)
     
     def testPosBefore2(self):
@@ -165,7 +165,7 @@ class RecognitionRuleTest(unittest.TestCase):
                            ('at', 'POS', set()),
                            ('2', 'POS', set()),
                            ('pm', 'POS', set())])
-        self.assertEquals([len(s[2]) for s in sent], [0,0,0,0,0,0,0,0], 'actual result was '+str(sent))
+        self.assertEqual([len(s[2]) for s in sent], [0,0,0,0,0,0,0,0], 'actual result was '+str(sent))
         self.assertFalse(success)
     
     def testNegBefore1(self):
@@ -176,7 +176,7 @@ class RecognitionRuleTest(unittest.TestCase):
                            ('leaves', 'POS', set()),
                            ('next', 'POS', set()),
                            ('Friday', 'POS', set())])
-        self.assertEquals([len(s[2]) for s in sent], [0,0,0,0,0], 'actual result was '+str(sent))
+        self.assertEqual([len(s[2]) for s in sent], [0,0,0,0,0], 'actual result was '+str(sent))
         self.assertFalse(success)
     
     def testNegBefore2(self):
@@ -190,7 +190,7 @@ class RecognitionRuleTest(unittest.TestCase):
                            ('and', 'POS', set()),
                            ('next', 'POS', set()),
                            ('Friday', 'POS', set())])
-        self.assertEquals([len(s[2]) for s in sent], [0,0,0,0,1,0,0,0], 'actual result was '+str(sent))
+        self.assertEqual([len(s[2]) for s in sent], [0,0,0,0,1,0,0,0], 'actual result was '+str(sent))
         self.assertTrue(success)
     
     def testPosAfter1(self):
@@ -203,7 +203,7 @@ class RecognitionRuleTest(unittest.TestCase):
                            ('Friday', 'POS', set()),
                            ('for', 'POS', set()),
                            ('Atlanta', 'POS', set())])
-        self.assertEquals([len(s[2]) for s in sent], [0,0,0,0,1,0,0], 'actual result was '+str(sent))
+        self.assertEqual([len(s[2]) for s in sent], [0,0,0,0,1,0,0], 'actual result was '+str(sent))
         self.assertTrue(success)
     
     def testPosAfter2(self):
@@ -214,7 +214,7 @@ class RecognitionRuleTest(unittest.TestCase):
                            ('leaves', 'POS', set()),
                            ('on', 'POS', set()),
                            ('Friday', 'POS', set())])
-        self.assertEquals([len(s[2]) for s in sent], [0,0,0,0,0], 'actual result was '+str(sent))
+        self.assertEqual([len(s[2]) for s in sent], [0,0,0,0,0], 'actual result was '+str(sent))
         self.assertFalse(success)
     
     def testNegAfter1(self):
@@ -227,7 +227,7 @@ class RecognitionRuleTest(unittest.TestCase):
                            ('Friday', 'POS', set()),
                            ('for', 'POS', set()),
                            ('Atlanta', 'POS', set())])
-        self.assertEquals([len(s[2]) for s in sent], [0,0,0,0,0,0,0], 'actual result was '+str(sent))
+        self.assertEqual([len(s[2]) for s in sent], [0,0,0,0,0,0,0], 'actual result was '+str(sent))
         self.assertFalse(success)
     
     def testNegAfter2(self):
@@ -240,7 +240,7 @@ class RecognitionRuleTest(unittest.TestCase):
                            ('Friday', 'POS', set()),
                            ('for', 'POS', set()),
                            ('Atlanta', 'POS', set())])
-        self.assertEquals([len(s[2]) for s in sent], [0,0,0,0,1,0,0], 'actual result was '+str(sent))
+        self.assertEqual([len(s[2]) for s in sent], [0,0,0,0,1,0,0], 'actual result was '+str(sent))
         self.assertTrue(success)
     
     def testDeliminateNumbers1(self):

@@ -18,7 +18,7 @@ class RecognitionRuleBlockTest(unittest.TestCase):
                            ('Thursday', 'POS', set()),
                            ('and', 'POS', set()),
                            ('Friday', 'POS', set())])
-        self.assertEquals([len(s[2]) for s in sent], [0,0,0,0,1,0,1], 'actual result was '+str(sent))
+        self.assertEqual([len(s[2]) for s in sent], [0,0,0,0,1,0,1], 'actual result was '+str(sent))
         self.assertTrue(success)
     
     def testApplyUntilSuccess(self):
@@ -32,7 +32,7 @@ class RecognitionRuleBlockTest(unittest.TestCase):
                            ('Thursday', 'POS', set()),
                            ('and', 'POS', set()),
                            ('Friday', 'POS', set())])
-        self.assertEquals([len(s[2]) for s in sent], [0,0,0,0,1,0,0], 'actual result was '+str(sent))
+        self.assertEqual([len(s[2]) for s in sent], [0,0,0,0,1,0,0], 'actual result was '+str(sent))
         self.assertTrue(success)
     
     def testRaiseError(self):

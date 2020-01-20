@@ -109,7 +109,7 @@ def _words_to_num(nums):
         return nums[0]
 
     # find highest number in string
-    (highest_num, highest_num_i) = max(zip(nums, range(len(nums))), key=itemgetter(0))
+    (highest_num, highest_num_i) = max(list(zip(nums, list(range(len(nums))))), key=itemgetter(0))
     before = nums[:highest_num_i]
     after = nums[highest_num_i + 1:]
 

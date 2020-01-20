@@ -22,13 +22,13 @@ class NormalisationRuleEngineTest(unittest.TestCase):
              ('1996', 'POS', {t}),
              ('to', 'POS', set()),
              ('Atlanta', 'POS', set())]], '')
-        self.assertEquals(t.value, '19960106')
+        self.assertEqual(t.value, '19960106')
     
     def testBadErrors(self):
         r = NormalisationRuleEngine()
         try:
             r.load_rules(os.path.join(os.path.dirname(__file__), 'test_normalisation_rules_malformed/'))
         except RuleLoadErrors as e:
-            self.assertEquals(len(e.errors), 12, "These errors were raised: " + str(e))
+            self.assertEqual(len(e.errors), 12, "These errors were raised: " + str(e))
         else:
             self.fail('No exceptions were raised/caught')

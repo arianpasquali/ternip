@@ -35,5 +35,5 @@ for file in glob(os.path.normpath('preprocessed/*.sgm')):
     with open(file) as fd:
         bits += len(fd.read())
 
-print "TERNIP:", ternip_time, "seconds"
-print "       ", bits/ternip_time/1024, "kb/s"
+print("TERNIP:", ternip_time, "seconds")
+print("       ", bits/ternip_time/1024, "kb/s")
